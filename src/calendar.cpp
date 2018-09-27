@@ -5,8 +5,10 @@
 // Created by Alice on 27.09.2018.
 //
 Calendar::Calendar(int date, int mounth, int year) : date(date), mounth(mounth), year(year) {
+    int yy = -1;
     if(year > 0){
         std::cout << "Year: " << year << std::endl;
+        yy = year;
     }
     else{
         std::cout << "Year is not correct" << std::endl;
@@ -21,7 +23,8 @@ Calendar::Calendar(int date, int mounth, int year) : date(date), mounth(mounth),
     }
     if((mm != -1  && mm != 2 && date > 0 && date < 31 && (mm == 4 || mm == 6 || mm == 9 || mm == 11)) ||
         ( mm != -1 && date > 0 && date < 32 && (mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12) && mm != 2  ) ||
-        (mm == 2 && date > 0 && date < 29 )){
+        (mm == 2 && date > 0 && date < 30 && yy != -1 && (yy%400 == 0 || (yy%4 ==0 && yy%100 > 0) )  ) ||
+        (mm == 2 && date > 0 && date < 29 && yy != -1 && (yy%400 >0 && yy%100 == 0)  )){
         std::cout << "Day: " << date << std::endl;
     }
     else{
